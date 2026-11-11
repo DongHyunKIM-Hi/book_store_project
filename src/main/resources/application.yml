@@ -1,1 +1,25 @@
-spring.application.name=book_store_project
+spring:
+  # DB 는 이제 RDS. 접속 정보는 .env 에서 환경변수로 들어온다.
+  # 기본값으로는 뜨지 않게 두어, 설정을 빠뜨리면 바로 알아차리게 한다.
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/db_project}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  # 기본 한도가 1MB 라 사진 한 장에도 걸린다. 표지 업로드용으로 올려 둔다. (교안 ④)
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+app:
+  s3:
+    bucket: ${S3_BUCKET:CHANGE-ME-본인-버킷-이름}
+    region: ${AWS_REGION:ap-northeast-2}

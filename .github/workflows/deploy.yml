@@ -1,0 +1,8 @@
+# 구조 맛보기 — 용어 세 개만 잡으면 됩니다
+on: push              # 트리거: 언제 실행되나
+jobs:
+  build:              # 잡: 한 가상 머신에서 도는 작업 묶음
+    runs-on: ubuntu-latest
+    steps:            # 스텝: 위에서 아래로 실행되는 명령들
+      - uses: actions/checkout@v4     # uses: 남이 만든 부품(액션) 재사용
+      - run: ./gradlew build          # run: 셸 명령 직접 실행
