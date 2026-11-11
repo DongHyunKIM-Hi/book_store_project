@@ -12,7 +12,7 @@ public class HiController {
 
     @GetMapping
     public String hi() {
-        return "h2h2";
+        return "h2h2h2h2h2h2h2h2h2h2h2h2h2h2h2h2h2h2h2h2h2h2h2h2wqh2h";
     }
 }
 
