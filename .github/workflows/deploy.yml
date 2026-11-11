@@ -1,5 +1,6 @@
 name: deploy
 
+# 다른곳 말고 정확하게 main push가 발생하면 아래와 같은 일을 하겠다!
 on:
   push:
     branches: [ main ]
@@ -15,14 +16,16 @@ env:
   ECS_SERVICE: bookstore-service-5
   TASK_FAMILY: bookstore-task
 
+## 여기까지가 환경 설정 셋팅입니다
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
+    steps: # 깃헙 엑션이 어떻게 수행할것인지 , 템플릿 비슷한것을 github으로부터 받겠다.
       - name: 코드 받기
         uses: actions/checkout@v4
 
-      - name: AWS 인증 (OIDC — 키 없음)
+      - name: AWS 인증 (OIDC — 키 없음) # aws 로그인을 수행하겠다!
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::681023837551:role/github-actions-bookstore
